@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "catafone",
+  "author": "ATI/DESIS3/GTAD3",
+  "homepage": "http://portal.bndes.net/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -40,5 +40,5 @@
     "cordova-plugin-device"
   ],
   "cordovaPlatforms": [],
-  "description": "catafone: An Ionic project"
+  "description": "catafone"
 }

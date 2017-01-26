@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ListaContatos page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Catafone</ion-title>
+    <button ion-button menuToggle="left">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+      <ion-item *ngFor="let c of contatos" (click)="abrirDetalhe(c)">
+        <ion-avatar item-left>
+          <img src="assets/cheetah.jpg">
+        </ion-avatar>
+        <h2>{{c.nome}}</h2>
+        <div item-right>
+          <h3>{{c.ramal}}</h3>
+        </div>
+        <p>{{c.cargo}}</p>
+      </ion-item>
+    </ion-list>
+</ion-content>
