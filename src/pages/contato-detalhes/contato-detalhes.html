@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
 
+        <img src="assets/cheetah.jpg"/>
+
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Nome</ion-label>
+      <ion-input type="text" readonly="true" value="{{ contato.nome }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Ramal</ion-label>
+      <ion-input type="text" readonly="true" value="{{ contato.ramal }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Lotação</ion-label>
+      <ion-input type="text" readonly="true" value="{{ contato.lotacao }}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Cargo</ion-label>
+      <ion-input type="text" readonly="true" value="{{ contato.cargo }}"></ion-input>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
