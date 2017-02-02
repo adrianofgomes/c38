@@ -8,10 +8,10 @@
     <ion-list >
       <ion-item class="bgimg">
         <ion-avatar>
-          <img src="assets/cheetah.jpg">
+          <img src="assets/default.png">
         </ion-avatar>
-        <h2>Cher</h2>
-        <p>Ugh. As if.</p>
+        <h2>Usuário</h2>
+        <p>BNDES</p>
         <button ion-button icon-left clear small item-right color="light">
           <ion-icon name="exit"></ion-icon>
           <div>Sair</div>
@@ -28,27 +28,5 @@
   </ion-content>
 </ion-menu>
 
-<ion-menu [content]="content" side="right" id="menuLateral">
-  <ion-header >
-    <ion-list >
-      <ion-item class="bgimg">
-        <ion-avatar>
-          <img src="assets/cheetah.jpg">
-        </ion-avatar>
-        <h2>Cher</h2>
-        <p>Ugh. As if.</p>
-        <button ion-button icon-left clear small item-right color="light">
-          <ion-icon name="exit"></ion-icon>
-          <div>Sair</div>
-        </button>
-      </ion-item>
-    </ion-list>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      aaa
-    </ion-list>
-  </ion-content>
-</ion-menu>
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

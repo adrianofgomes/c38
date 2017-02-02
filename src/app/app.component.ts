@@ -23,7 +23,8 @@ export class MyApp {
     this.pages = [
       { title: 'Catafone', component: ListaContatosPage },
       { title: 'Favoritos', component: Favoritos },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Minha Equipe', component: 'MinhaEquipe' },
+      //{ title: 'Page Two', component: Page2 }
     ];
 
   }

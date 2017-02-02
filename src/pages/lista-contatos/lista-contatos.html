@@ -15,18 +15,18 @@
 
 </ion-header>
 
-
 <ion-content padding>
-    <ion-list>
-      <ion-item *ngFor="let c of contatos" (click)="abrirDetalhe(c)">
+    <ion-list [virtualScroll]="colaboradores">
+      <ion-item *virtualItem="let c" (click)="abrirDetalhe(c)">
         <ion-avatar item-left>
-          <img src="assets/cheetah.jpg">
+          <ion-img src="http://d-00888133.bndes.net:14075/c38/rest/foto/{{c.matricula}}"></ion-img>
         </ion-avatar>
         <h2>{{c.nome}}</h2>
         <div item-right>
           <h3>{{c.ramal}}</h3>
         </div>
-        <p>{{c.cargo}}</p>
+        <p>{{c.nomeCargo}}</p>
+        <p>{{c.nomeFuncao}}</p>
       </ion-item>
     </ion-list>
 </ion-content>
