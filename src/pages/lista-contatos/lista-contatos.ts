@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ContatoDetalhesPage } from '../contato-detalhes/contato-detalhes';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { ContatoFilter } from '../../components/contato-filter';
 
 /*
   Generated class for the ListaContatos page.
@@ -16,17 +17,26 @@ import 'rxjs/add/operator/map';
 })
 export class ListaContatosPage {
 
-  private url: string = "http://d-00888133.bndes.net:14075/c38/rest/entity/colaborador/findAll";
+  private url: string = "http://web.tst.bndes.net/c38/rest/entity/colaborador/findAll";
 
-  contatos: Array<{nome: string, ramal: string, lotacao: string, cargo: string}>;
+  contatos: Array<{nome: string, ramal: string, lotacao: string, nomeCargo: string}>;
 
   colaboradores: Array<any>;
 
+  filtro: string = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+
     this.contatos = [
-      { nome: 'José', ramal: '1234', lotacao: 'ATI/DESIS3', cargo: 'Coordenador' },
-      { nome: 'Maria', ramal: '2222', lotacao: 'ATI/DESIS3', cargo: null },
-      { nome: 'Fulano', ramal: '4567', lotacao: 'GP', cargo: 'Chefe de Departamento' },
+      { nome: 'José', ramal: '1234', lotacao: 'ATI/DESIS3', nomeCargo: 'Coordenador' },
+      { nome: 'Maria', ramal: '2222', lotacao: 'ATI/DESIS3', nomeCargo: null },
+      { nome: 'Fulano', ramal: '4567', lotacao: 'GP', nomeCargo: 'Chefe de Departamento' },
+      { nome: 'José', ramal: '1234', lotacao: 'ATI/DESIS3', nomeCargo: 'Coordenador' },
+      { nome: 'Maria', ramal: '2222', lotacao: 'ATI/DESIS3', nomeCargo: null },
+      { nome: 'Fulano', ramal: '4567', lotacao: 'GP', nomeCargo: 'Chefe de Departamento' },
+      { nome: 'José', ramal: '1234', lotacao: 'ATI/DESIS3', nomeCargo: 'Coordenador' },
+      { nome: 'Maria', ramal: '2222', lotacao: 'ATI/DESIS3', nomeCargo: null },
+      { nome: 'Fulano', ramal: '4567', lotacao: 'GP', nomeCargo: 'Chefe de Departamento' },
     ];
 
     this.http.get(this.url).map(res => res.json())

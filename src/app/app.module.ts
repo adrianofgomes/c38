@@ -5,6 +5,7 @@ import { Favoritos } from '../pages/favoritos/favoritos';
 import { Page2 } from '../pages/page2/page2';
 import { ListaContatosPage } from '../pages/lista-contatos/lista-contatos';
 import { ContatoDetalhesPage } from '../pages/contato-detalhes/contato-detalhes';
+import { ContatoFilter } from '../components/contato-filter';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ContatoDetalhesPage } from '../pages/contato-detalhes/contato-detalhes'
     ListaContatosPage,
     ContatoDetalhesPage,
     Favoritos,
-    Page2
+    Page2,
+    ContatoFilter
   ],
   imports: [
     IonicModule.forRoot(MyApp)

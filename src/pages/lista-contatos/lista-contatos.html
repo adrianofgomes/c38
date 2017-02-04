@@ -15,18 +15,20 @@
 
 </ion-header>
 
-<ion-content padding>
-    <ion-list [virtualScroll]="colaboradores">
-      <ion-item *virtualItem="let c" (click)="abrirDetalhe(c)">
-        <ion-avatar item-left>
-          <ion-img src="http://d-00888133.bndes.net:14075/c38/rest/foto/{{c.matricula}}"></ion-img>
-        </ion-avatar>
-        <h2>{{c.nome}}</h2>
-        <div item-right>
-          <h3>{{c.ramal}}</h3>
-        </div>
-        <p>{{c.nomeCargo}}</p>
-        <p>{{c.nomeFuncao}}</p>
-      </ion-item>
-    </ion-list>
+<ion-content >
+  <ion-searchbar  [(ngModel)]="filtro"></ion-searchbar>
+  <ion-list [virtualScroll]="contatos | contatofilter:filtro">
+    <ion-item *virtualItem="let c " (click)="abrirDetalhe(c)">
+      <ion-avatar item-left>
+        <!--ion-img src="http://web.tst.bndes.net/c38/rest/foto/{{c.matricula}}"></ion-img-->
+        <ion-img src="assets/default.png"></ion-img>
+      </ion-avatar>
+      <h2>{{c.nome}}</h2>
+      <div item-right>
+        <h3>{{c.ramal}}</h3>
+      </div>
+      <p>{{c.nomeCargo}}</p>
+      <p>{{c.nomeFuncao}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
