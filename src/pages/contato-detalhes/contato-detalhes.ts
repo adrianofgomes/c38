@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NativeStorage } from 'ionic-native';
 
 /*
   Generated class for the ContatoDetalhes page.
@@ -21,6 +22,18 @@ export class ContatoDetalhesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContatoDetalhesPage');
+  }
+
+  favoritar() {
+    NativeStorage.getItem('favoritos').then(favoritos => {
+      favoritos.push(this.contato);
+      NativeStorage.setItem('favoritos', favoritos).then(
+        () => console.log('Stored item!'),
+        error => console.error('Error storing item', error)
+      );
+    },
+      error => console.error(error)
+    );
   }
 
 }
