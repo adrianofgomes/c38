@@ -26,11 +26,25 @@ export class ContatoDetalhesPage {
 
   favoritar() {
     NativeStorage.getItem('favoritos').then(favoritos => {
-      favoritos.push(this.contato);
-      NativeStorage.setItem('favoritos', favoritos).then(
-        () => console.log('Stored item!'),
-        error => console.error('Error storing item', error)
-      );
+      // Se o contato já for favorito, então desfavorita, senão favorita.
+      if (this.contato.favorito) {
+        let index = -1;
+        favoritos.forEach((f, i) => {
+          if (f.ramal == this.contato.ramal)
+            index = i;
+        });
+        if (index > -1) {
+          this.contato.favorito = false;
+          favoritos.splice(index, 1);          
+        }
+      } else {
+        this.contato.favorito = true;
+        favoritos.push(this.contato);
+        NativeStorage.setItem('favoritos', favoritos).then(
+          () => console.log('Stored item!'),
+          error => console.error('Error storing item', error)
+        );
+      }
     },
       error => console.error(error)
     );

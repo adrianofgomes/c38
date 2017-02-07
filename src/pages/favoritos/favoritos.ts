@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
-
 import { NativeStorage } from 'ionic-native';
+import { ContatoDetalhesPage } from '../contato-detalhes/contato-detalhes';
 
 @Component({
 	selector: 'page-favoritos',
@@ -20,5 +19,9 @@ export class Favoritos {
 			error => console.error(error)
 		);
 	}
+
+	abrirDetalhe(contato){
+    this.navCtrl.push(ContatoDetalhesPage, {contato});
+  }
 
 }
