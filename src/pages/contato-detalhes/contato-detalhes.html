@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>{{ contato.nome }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="favoritar()">
+        <ion-icon name="star" color="{{ contato.favorito ? 'primary' : '' }}"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

@@ -4,6 +4,7 @@ import { ContatoDetalhesPage } from '../contato-detalhes/contato-detalhes';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ContatoFilter } from '../../components/contato-filter';
+import { NativeStorage } from 'ionic-native';
 
 /*
   Generated class for the ListaContatos page.
@@ -19,7 +20,7 @@ export class ListaContatosPage {
 
   private url: string = "http://web.tst.bndes.net/c38/rest/entity/colaborador/findAll";
 
-  contatos: Array<{nome: string, ramal: string, lotacao: string, nomeCargo: string}>;
+  contatos: Array<{nome: string, ramal: string, lotacao: string, nomeCargo: string, favorito?: boolean}>;
 
   colaboradores: Array<any>;
 
@@ -38,6 +39,19 @@ export class ListaContatosPage {
       { nome: 'Maria', ramal: '2222', lotacao: 'ATI/DESIS3', nomeCargo: null },
       { nome: 'Fulano', ramal: '4567', lotacao: 'GP', nomeCargo: 'Chefe de Departamento' },
     ];
+
+    this.contatos.forEach(contato => {
+       NativeStorage.getItem('favoritos').then(favoritos => {
+          favoritos.forEach(f => {
+            if (f.ramal == contato.ramal)
+              contato.favorito = true;
+            else
+              contato.favorito = false;
+          });
+      },
+        error => console.error(error)
+      );
+    });
 
     this.http.get(this.url).map(res => res.json())
       .subscribe(data => {
