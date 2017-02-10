@@ -18,6 +18,12 @@ export class ContatoDetalhesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.contato = this.navParams.get('contato');
+
+    NativeStorage.getItem('myitem2')
+      .then(
+      data => console.log(data),
+      error => console.log(error.code.code)
+    );
   }
 
   ionViewDidLoad() {
@@ -35,7 +41,7 @@ export class ContatoDetalhesPage {
         });
         if (index > -1) {
           this.contato.favorito = false;
-          favoritos.splice(index, 1);          
+          favoritos.splice(index, 1);
         }
       } else {
         this.contato.favorito = true;
@@ -46,7 +52,16 @@ export class ContatoDetalhesPage {
         );
       }
     },
-      error => console.error(error)
+      error => {
+        if (error.code.code === 2) {
+          NativeStorage.setItem('favoritos', []).then(
+            () => this.favoritar(),
+            error => console.error('Error storing item', error)
+          );
+        } else {          
+          console.error('Error retrieving item', error);
+        }
+      }
     );
   }
 

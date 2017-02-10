@@ -20,7 +20,7 @@ export class ListaContatosPage {
 
   private url: string = "http://web.tst.bndes.net/c38/rest/entity/colaborador/findAll";
 
-  contatos: Array<{nome: string, ramal: string, lotacao: string, nomeCargo: string, favorito?: boolean}>;
+  contatos: Array<{ nome: string, ramal: string, lotacao: string, nomeCargo: string, favorito?: boolean }>;
 
   colaboradores: Array<any>;
 
@@ -40,27 +40,39 @@ export class ListaContatosPage {
       { nome: 'Fulano', ramal: '4567', lotacao: 'GP', nomeCargo: 'Chefe de Departamento' },
     ];
 
-    this.contatos.forEach(contato => {
-       NativeStorage.getItem('favoritos').then(favoritos => {
-          favoritos.forEach(f => {
-            if (f.ramal == contato.ramal)
-              contato.favorito = true;
-            else
-              contato.favorito = false;
-          });
-      },
-        error => console.error(error)
-      );
-    });
+    this.carregarFavoritos();
 
     this.http.get(this.url).map(res => res.json())
       .subscribe(data => {
         this.colaboradores = data.entity;
-      }); 
+      });
   }
 
-  abrirDetalhe(contato){
-    this.navCtrl.push(ContatoDetalhesPage, {contato});
+  carregarFavoritos() {
+    this.contatos.forEach(contato => {
+      NativeStorage.getItem('favoritos').then(favoritos => {
+        favoritos.forEach(f => {
+          if (f.ramal == contato.ramal)
+            contato.favorito = true;
+          else
+            contato.favorito = false;
+        });
+      },
+        error => {
+          if (error.code.code === 2) {
+            NativeStorage.setItem('favoritos', []).then(
+              () => this.carregarFavoritos(),
+              error => console.error('Error storing item', error)
+            );
+          } else {
+            console.error('Error retrieving item', error);
+          }
+      });
+    });
+  }
+
+  abrirDetalhe(contato) {
+    this.navCtrl.push(ContatoDetalhesPage, { contato });
   }
 
   ionViewDidLoad() {

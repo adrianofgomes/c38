@@ -14,14 +14,27 @@ export class Favoritos {
 	filtro: string = '';
 
 	constructor(public navCtrl: NavController) {
+		this.carregarFavoritos();
+	}
+
+	carregarFavoritos() {
 		NativeStorage.getItem('favoritos').then(
 			favoritos => { this.contatos = favoritos },
-			error => console.error(error)
+			error => {
+				if (error.code.code === 2) {
+					NativeStorage.setItem('favoritos', []).then(
+						() => this.carregarFavoritos(),
+						error => console.error('Error storing item', error)
+					);
+				} else {
+					console.error('Error retrieving item', error);
+				}
+			}
 		);
 	}
 
-	abrirDetalhe(contato){
-    this.navCtrl.push(ContatoDetalhesPage, {contato});
-  }
+	abrirDetalhe(contato) {
+		this.navCtrl.push(ContatoDetalhesPage, { contato });
+	}
 
 }
